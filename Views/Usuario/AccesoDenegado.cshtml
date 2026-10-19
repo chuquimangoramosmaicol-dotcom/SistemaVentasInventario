@@ -1,0 +1,41 @@
+﻿
+@{
+    ViewData["Title"] = "Acceso denegado";
+    Layout = null;
+}
+
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Acceso denegado</title>
+    <link rel="stylesheet"
+          href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
+</head>
+<body class="bg-light">
+    <div class="container min-vh-100 d-flex
+                justify-content-center align-items-center">
+        <div class="card shadow-sm p-4 text-center"
+             style="max-width: 500px;">
+            <h2 class="text-danger">Acceso denegado</h2>
+
+            <p class="text-muted">
+                No tienes permisos para acceder a esta sección.
+            </p>
+
+            <a asp-controller="Home"
+               asp-action="Index"
+               class="btn btn-primary">
+                Volver al inicio
+            </a>
+
+            <a asp-controller="Usuario"
+               asp-action="Logout"
+               class="btn btn-outline-secondary mt-2">
+                Cerrar sesión
+            </a>
+        </div>
+    </div>
+</body>
+</html>

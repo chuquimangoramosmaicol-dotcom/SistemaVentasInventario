@@ -1,0 +1,23 @@
+﻿# Archivos generados por .NET
+bin/
+obj/
+
+# Configuración local y datos sensibles
+appsettings.Development.json
+appsettings.Local.json
+appsettings.*.Local.json
+.env
+.env.*
+
+# Archivos de Visual Studio
+.vs/
+*.user
+*.suo
+
+# Archivos temporales y del sistema
+*.log
+.DS_Store
+Thumbs.db
+
+# Configuración local de la aplicación
+appsettings.json
