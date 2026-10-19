@@ -16,74 +16,144 @@
 
     <link rel="stylesheet"
           href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
+
+    <style>
+        body {
+            min-height: 100vh;
+            background: linear-gradient(135deg, #f4f0ff, #eef5ff);
+        }
+
+        .login-card {
+            width: 100%;
+            max-width: 440px;
+            border: 0;
+            border-radius: 20px;
+            overflow: hidden;
+        }
+
+        .login-header {
+            background: #563d9b;
+            color: white;
+            padding: 28px 24px;
+        }
+
+        .brand-mark {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            width: 56px;
+            height: 56px;
+            border-radius: 16px;
+            background: rgba(255, 255, 255, 0.16);
+            font-size: 1.6rem;
+            font-weight: 700;
+            margin-bottom: 14px;
+        }
+
+        .login-body {
+            padding: 28px;
+        }
+
+        .form-control {
+            min-height: 46px;
+            border-radius: 10px;
+        }
+
+        .form-control:focus {
+            border-color: #7657c8;
+            box-shadow: 0 0 0 0.2rem rgba(86, 61, 155, 0.15);
+        }
+
+        .btn-login {
+            min-height: 47px;
+            border: 0;
+            border-radius: 10px;
+            background: #563d9b;
+            color: white;
+            font-weight: 600;
+        }
+
+        .btn-login:hover {
+            background: #432d80;
+            color: white;
+        }
+
+        .validation-message {
+            font-size: 0.875rem;
+        }
+    </style>
 </head>
-<body class="bg-light">
-    <div class="container min-vh-100 d-flex
-                justify-content-center align-items-center">
 
-        <div class="card shadow-sm p-4"
-             style="width: 100%; max-width: 420px;">
+<body>
+    <main class="container min-vh-100 d-flex justify-content-center align-items-center py-4">
+        <section class="card login-card shadow-lg">
 
-            <div class="text-center mb-4">
-                <h2 class="fw-bold">Colores &amp; Creaciones</h2>
+            <header class="login-header text-center">
+                <div class="brand-mark" aria-hidden="true">C&amp;C</div>
 
-                <p class="text-muted mb-0">
+                <h1 class="h3 fw-bold mb-2">Colores &amp; Creaciones</h1>
+
+                <p class="mb-0 opacity-75">
                     Sistema de ventas e inventario
                 </p>
+            </header>
+
+            <div class="login-body">
+                <h2 class="h4 fw-bold mb-2">Bienvenido</h2>
+
+                <p class="text-secondary mb-4">
+                    Ingresa tus credenciales para continuar.
+                </p>
+
+                <form asp-controller="Usuario"
+                      asp-action="Login"
+                      method="post">
+
+                    @Html.AntiForgeryToken()
+
+                    <div asp-validation-summary="ModelOnly"
+                         class="alert alert-danger validation-message"
+                         role="alert"></div>
+
+                    <div class="mb-3">
+                        <label asp-for="Correo" class="form-label fw-semibold">
+                            Correo electrónico
+                        </label>
+
+                        <input asp-for="Correo"
+                               class="form-control"
+                               type="email"
+                               autocomplete="username"
+                               placeholder="Ingresa tu correo" />
+
+                        <span asp-validation-for="Correo"
+                              class="text-danger validation-message"></span>
+                    </div>
+
+                    <div class="mb-4">
+                        <label asp-for="Password" class="form-label fw-semibold">
+                            Contraseña
+                        </label>
+
+                        <input asp-for="Password"
+                               class="form-control"
+                               autocomplete="current-password"
+                               placeholder="Ingresa tu contraseña" />
+
+                        <span asp-validation-for="Password"
+                              class="text-danger validation-message"></span>
+                    </div>
+
+                    <button type="submit" class="btn btn-login w-100">
+                        Iniciar sesión
+                    </button>
+                </form>
+
+                <p class="text-secondary text-center small mt-4 mb-0">
+                    Acceso exclusivo para personal autorizado.
+                </p>
             </div>
-
-            <h4 class="mb-3">Iniciar sesión</h4>
-
-            <form asp-controller="Usuario"
-                  asp-action="Login"
-                  method="post">
-
-                @Html.AntiForgeryToken()
-
-                <div asp-validation-summary="ModelOnly"
-                     class="text-danger mb-3"></div>
-
-                <div class="mb-3">
-                    <label asp-for="Correo"
-                           class="form-label">
-                        Correo electrónico
-                    </label>
-
-                    <input asp-for="Correo"
-                           class="form-control"
-                           type="email"
-                           autocomplete="username"
-                           placeholder="Ingresa tu correo" />
-
-                    <span asp-validation-for="Correo"
-                          class="text-danger"></span>
-                </div>
-
-                <div class="mb-3">
-                    <label asp-for="Password"
-                           class="form-label">
-                        Contraseña
-                    </label>
-
-                    <input asp-for="Password"
-                           class="form-control"
-                           autocomplete="current-password"
-                           placeholder="Ingresa tu contraseña" />
-
-                    <span asp-validation-for="Password"
-                          class="text-danger"></span>
-                </div>
-
-                <button type="submit"
-                        class="btn btn-primary w-100">
-                    Ingresar
-                </button>
-            </form>
-
-            <p class="text-muted text-center mt-4 mb-0">
-                Acceso exclusivo para personal autorizado.
-            </p>
-        </div>
-    </div>
+        </section>
+    </main>
 </body>
 </html>
